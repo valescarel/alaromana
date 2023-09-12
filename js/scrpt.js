@@ -1,24 +1,9 @@
 
-
-// const productos = 
-// [
-//     hamburguesa,
-//     papas,
-//     bebida
-// ]
-
 menuDisponible = [
     "hamburguesa",
     "papas",
     "bebida"
 ]
-
-// const IVA = 1.21
-
-// for (const producto of productos){
-//     producto.precio = producto.precio * IVA
-//     console.log(producto)
-// }
 
 let nombreIngresado   = prompt("Hola, cómo te llamas?");
 
@@ -44,10 +29,3 @@ while (flag) {
         alert ("pedido completado")
     }
 }
-
-
-
-// function mostrarTotal() {
-//     let totalPedido = cargarProducto.precio
-//     alert(`El total a pagar es de: $ ${totalPedido}`)
-//     }
