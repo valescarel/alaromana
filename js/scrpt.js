@@ -1,28 +1,11 @@
-// let ingreseNombre = (prompt ("Hola!, Cómo te llamás?"))
-// if (ingreseNombre = null) {
-//     alert ('por favor ingrese su nombre')
-// } else {
-//     alert ('${ingreseNombre}, que queres comer hoy?')
-// }
-const hamburguesa = {
-    nombre: "Hamburguesa simple con papas",
-    precio: 3000
-}
-const papas = {
-    nombre: "Papas fritas con cheddar",
-    precio: 2300
-}
-const bebida = {
-    nombre: "Gaseosa linea coca-cola",
-    precio: 750
-}
 
-const productos = 
-[
-    hamburguesa,
-    papas,
-    bebida
-]
+
+// const productos = 
+// [
+//     hamburguesa,
+//     papas,
+//     bebida
+// ]
 
 menuDisponible = [
     "hamburguesa",
@@ -30,12 +13,12 @@ menuDisponible = [
     "bebida"
 ]
 
-const IVA = 1.21
+// const IVA = 1.21
 
-for (const producto of productos){
-    producto.precio = producto.precio * IVA
-    console.log(producto)
-}
+// for (const producto of productos){
+//     producto.precio = producto.precio * IVA
+//     console.log(producto)
+// }
 
 let nombreIngresado   = prompt("Hola, cómo te llamas?");
 
