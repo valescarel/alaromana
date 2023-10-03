@@ -8,7 +8,38 @@
     <script async src="./js/scrpt.js"></script>
 </head>
 <body>
-    <h1>¡Pedí aca tu comida!</h1>
-    <h2>Elegi entre hamburguesa, papas o bebida.</h2>
+    <h1 id="titulo">Bienvenido al resturante!</h1>
+    <h2 id="comida">Ya sabes que vas a comer hoy?</h2>
+    <button class="button" id="darkMode">Modo Oscuro</button>
+
+    <!-- <button id="mostrarMenu">Mostrar menu</button>
+    <div id="menuAgregar" class="oculto">
+        <form id="formularioPeliculas"> -->
+
+    <button class="button" id="mostrarMenu">Estoy listo para pedir!</button>
+    <div id="agregarProductos" class="oculto">
+        <form id="formularioComida">
+            <div id="platoAElegir">
+                <h3>Elegi tu plato!</h3>
+                <select id="plato" class="form-select" placeholder="Abrir para elegir">
+                    <option value="Hamburguesa">Hamburguesa con queso</option>
+                    <option value="Papas">Papas con cheddar</option>
+                    <option value="CocaCola">Cocacola</option>
+                </select>
+            </div>
+            <div>
+                <select id="cantidad" class="form-select" aplaceholder="Abrir para elegir" >
+                    <option id="cantidad" type="number" value="1">1</option>
+                    <option id="cantidad" type="number" value="2">2</option>
+                    <option id="cantidad" type="number" value="3">3</option>
+                </select>
+            </div>
+            <button class="button" id="agregarProductos">Agregar a tu pedido</button>
+        </form>
+    </div>
+    <div id="listado"></div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
 </body>
 </html>
