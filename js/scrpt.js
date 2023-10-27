@@ -1,4 +1,15 @@
+const platos = [{ id: 1, nombre: "Hamburguesa Simple", precio: 2000},
+                { id: 2, nombre: "Hamburguesa con Cheddar", precio: 2500},
+                { id: 3, nombre: "Hamburguesa Doble", precio: 3000}];
 
+const select = document.getElementById("select")
+
+
+platos.forEach((plato) => {
+const option = document.createElement("option")
+option.innerText = `${plato.nombre}`
+select.appendChild(option)
+})
 class Plato {
     constructor(nombre, cantidad) {
         // PROPIEDADES O ATRIBUTOS
