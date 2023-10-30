@@ -1,0 +1,54 @@
+[
+    { 
+        "id": "1", 
+        "nombre": "Jupiter", 
+        "tipo": "Simple",
+        "precio": 2900, 
+        "descripcion": "Hamburguesa Simple con con queso y papas con aderezo de la casa" 
+    },
+    { 
+        "id": "2", 
+        "nombre": "Juno",  
+        "tipo": "Doble",
+        "valor": 600, 
+        "descripcion": "Hamburguesa Doble con con queso y papas con aderezo de la casa" 
+    },
+    { 
+        "id": "3", 
+        "nombre": "Minerva", 
+        "tipo": "Simple", 
+        "valor": 700, 
+        "descripcion": "Hamburguesa Simple con con queso, panceta y cebolla y papas con aderezo de la casa" 
+    },
+    { 
+        "id": "4", 
+        "nombre": "Vulcano", 
+        "tipo": "Doble",
+        "valor": 800, 
+        "descripcion": "Hamburguesa Doble con con queso, panceta y cebolla y papas con aderezo de la casa" 
+    },
+    { 
+        "id": "5", 
+        "nombre": "Diana",  
+        "tipo": "Simple",
+        "valor": 900, 
+        "descripcion": "Hamburguesa Simple con con queso, huevo frito y aros de cebolla y papas con aderezo de la casa" 
+    },
+    { 
+        "id": "6", 
+        "nombre": "Febo",  
+        "tipo": "Doble",
+        "valor": 900, 
+        "descripcion": "Hamburguesa Doble con con queso, huevo frito y aros de cebolla y papas con aderezo de la casa" 
+    },
+    { 
+        "id": "7", 
+        "nombre": "Venus",  
+        "tipo": "Otra",
+        "valor": 1500, 
+        "descripcion": "Hamburguesa vegana con papas con aderezo de la casa" 
+    }
+]
+
+
+

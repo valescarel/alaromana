@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script async src="./js/scrpt.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>A LA ROMANA</title>
 </head>
+
 <body>
-    <h1 id="titulo">Bienvenido al resturante!</h1>
-    <h2 id="comida">Ya sabes que vas a comer hoy?</h2>
-    <button class="button" id="darkMode">Modo Oscuro</button>
-
-    <button id="mostrarMenu">Mostrar menu</button>
-    <div id="menuAgregar" class="oculto">
-        <form id="formularioPeliculas">
-
-    <button class="button" id="mostrarMenu">Estoy listo para pedir!</button>
-    <div id="agregarProductos" class="oculto">
-        <form id="formularioComida">
-            <div id="platoAElegir">
-                <h3>Elegi tu plato!</h3>
-                <select id="platos" class="form-select" placeholder="Abrir para elegir">
-                    <option value="Hamburguesa">Hamburguesa con queso</option>
-                    <option value="Papas">Papas con cheddar</option>
-                    <option value="CocaCola">Cocacola</option>
-                </select>
+    <header>
+        <picture>
+            <img class="logo" src="./assets/images/alaromana.png" alt="Logo">
+        </picture>
+        <nav class="navbar">
+            <div class="buscador">
+                <label for="buscar"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input class="input-buscador" type="text" id="inputTexto" placeholder="Buscar...">
             </div>
-            <div>
-                <select id="cantidad" class="form-select" aplaceholder="Abrir para elegir" >
-                    <option id="cantidad" type="number" value="1">1</option>
-                    <option id="cantidad" type="number" value="2">2</option>
-                    <option id="cantidad" type="number" value="3">3</option>
-                </select>
+            <!-- <div id="register"></div> -->
+            <!-- <button id="button-register" class="button-index">
+                <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                        d="M5 13c0-5.088 2.903-9.436 7-11.182C16.097 3.564 19 7.912 19 13c0 .823-.076 1.626-.22 2.403l1.94 1.832a.5.5 0 0 1 .095.603l-2.495 4.575a.5.5 0 0 1-.793.114l-2.234-2.234a1 1 0 0 0-.707-.293H9.414a1 1 0 0 0-.707.293l-2.234 2.234a.5.5 0 0 1-.793-.114l-2.495-4.575a.5.5 0 0 1 .095-.603l1.94-1.832C5.077 14.626 5 13.823 5 13zm1.476 6.696l.817-.817A3 3 0 0 1 9.414 18h5.172a3 3 0 0 1 2.121.879l.817.817.982-1.8-1.1-1.04a2 2 0 0 1-.593-1.82c.124-.664.187-1.345.187-2.036 0-3.87-1.995-7.3-5-8.96C8.995 5.7 7 9.13 7 13c0 .691.063 1.372.187 2.037a2 2 0 0 1-.593 1.82l-1.1 1.039.982 1.8zM12 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                        fill="currentColor"></path>
+                </svg>
+                <span>Regístrate</span>
+            </button> -->
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i
+                    class="fa-solid fa-cart-shopping fa-xl boton-carrito"></i></a>
+        </nav>
+    </header>
+    <main>
+        <!-- <div id="modal_container" class="modal-container">
+            <div class="formulario">
+                <div class="register-box">
+                    <h1>Regístrate para inicar sesión en tu mundo Coder</h1>
+                    <form id="idForm" class="register-form">
+                        <label for="username">Usuario</label>
+                        <input type="text" id="user" placeholder="Usuario">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" placeholder="Contraseña">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="E-mail">
+                        <hr>
+                        <button type="submit" id="close" class="button-register">Registrarme</button>
+                    </form>
+                </div>
             </div>
-            <button class="button" id="agregarProductos">Agregar a tu pedido</button>
-        </form>
-    </div>
-    <div id="listado"></div>
+        </div> -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Mi Carrito</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" id="carrito"></div>
+            <div id="total-carrito" class="total-carrito"></div>
+            <div class="botones">
+                <button id="vaciar-carrito" class="vaciar-carrito">Vaciar Carrito</button>
+                <button class="confirmar-compra" data-bs-dismiss="offcanvas"
+                    aria-label="Close"><a  id="confirmar-compra">Confrimar Compra</a></button>
+            </div>
+        </div>
+        <h2 class="collection-title">TENGO HAMBRE! HOY VOY A COMER...</h2>
+        <div class="buttons-select">
+            <button class= "button-select "id="hamburguesa-simple" value="Simples">Hamburguesa Simple</button>
+            <button class= "button-select "id="hamburguesa-doble" value="Dobles">Hamburguesa Doble</button>
+            <button class= "button-select "id="hamburguesa-otras" value="Otras">Otros tipos</button>
+        </div>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <div id="divComida" class="row"></div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.14/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://kit.fontawesome.com/6405feee34.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <script src="./js/script.js"></script>
 </body>
-</html> 
+
+</html>

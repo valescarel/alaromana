@@ -1,100 +1,225 @@
-const platos = [{ id: 1, nombre: "Hamburguesa Simple", precio: 2000},
-                { id: 2, nombre: "Hamburguesa con Cheddar", precio: 2500},
-                { id: 3, nombre: "Hamburguesa Doble", precio: 3000}];
-
-const select = document.getElementById("select")
-
-
-platos.forEach((plato) => {
-const option = document.createElement("option")
-option.innerText = `${plato.nombre}`
-select.appendChild(option)
-})
-class Plato {
-    constructor(nombre, cantidad) {
-        // PROPIEDADES O ATRIBUTOS
-        this.nombre = nombre;
-        this.cantidad = cantidad;
-    }
-
-    mostrarDatos() {
-        return `Plato: ${this.nombre}`;
-    }
-}
-
-let pedido = new Plato ("Hamburguesa", "2");
-pedido.mostrarDatos();
-
-let pedidoCompleto = [];
-
-function guardarPedido(e) {
-    e.preventDefault();
-    let nombre = document.querySelector("#plato").value;
-    let cantidad = document.querySelector("#cantidad").value;
-
-    let pedidoListo = new Plato(nombre, cantidad);
-    pedidoCompleto.push(pedidoListo);
-
-    mostrarListado(pedidoCompleto);
-    
-
-    document.getElementById("formularioComida").reset();
-}
-
-function agregarAlCarrito(elemento) {
-    console.log(elemento);
-    console.log(`Se agregó ${elemento.cantidad} ${elemento.nombre} al carrito`);
-}
-
-function mostrarListado(pedidoCompleto) {
-    let listado = document.getElementById("listado");
-
-    listado.textContent = "";
+let carrito = [];
+let carro = document.getElementById("carrito");
+let divComida = document.getElementById("divComida");
+let inputBuscador = inputTexto.value;
+let selectComida = document.getElementById('select-comida')
+let botonSimple = document.getElementById('hamburguesa-simple')
+let botonDoble = document.getElementById('hamburguesa-doble')
+let botonOtras = document.getElementById('hamburguesa-otras')
+let botonSelect = document.getElementById('select-button')
+let botonVaciar = document.getElementById("vaciar-carrito")
+let divTotal = document.getElementById('total-carrito')
+divTotal.textContent = `Total: 0`
 
 
-    pedidoCompleto.forEach((elemento) => {
+//BUSCADOR
+const buscador = () => {
+    let inputTexto = document.getElementById("inputTexto");
+    inputTexto.addEventListener("change", () => {
+        let buscador = inputTexto.value;
+        fetch('json/productos.json')
+            .then(response => response.json())
+            .then(comida => {
+                let comidaFiltrados = comida.filter((comida) =>
+                comida.tipo.includes(buscador.toUpperCase())
+                );
+                divComida.innerHTML = "";
+                comidaFiltrados.forEach((comida) => {
+                    const divComidaTarjeta = document.createElement("div");
+                    divComidaTarjeta.classList.add("card");
+                    divComidaTarjeta.style.width = "18rem";
 
-        const tarjeta = document.createElement("div");
-        tarjeta.classList.add("tarjeta");
+                    let {
+                        id,
+                        nombre,
+                        precio,
+                        tipo,
+                        descripcion
+                    } = comida
 
-        
-        const plato = document.createElement("h3");
-        plato.textContent = `Pediste: ${elemento.nombre}`;
+                    const divComidaContent = `
+            <div class="card-body">
+            <h5 class="card-title">${nombre}</h5>
+            <p class="card-text">${tipo}</p>
+            <p class="card-text">${descripcion}</p>
+            <p class="card-text">$ ${precio} </p>
+            <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+            </div>
+            `;
 
-        tarjeta.appendChild(plato);
-
-        const cantidad = document.createElement("div");
-        cantidad.textContent = `Porciones: ${elemento.cantidad}`;
-        tarjeta.appendChild(cantidad);
-
-        const boton = document.createElement("input");
-        boton.type = "button";
-
-        boton.id = `${elemento.cantidad$} ${elemento.nombre}`;
-        boton.value = "Agregar al carrito";
-
-        boton.addEventListener("click", () => agregarAlCarrito(elemento));
-
-        tarjeta.appendChild(boton);
-
-        listado.appendChild(tarjeta);
+                    divComidaTarjeta.innerHTML = divComidaContent;
+                    divComidaTarjeta
+                        .querySelector(".agregar-carrito")
+                        .addEventListener("click", () => agregarCarrito(comida));
+                    divComida.append(divComidaTarjeta);
+                });
+            })
     });
+};
+
+const pintarConBoton = (boton) => {
+    boton.addEventListener('click', () => {
+        fetch('json/productos.json')
+            .then(response => response.json())
+            .then(comida => {
+                let comidaFiltrados = comida.filter((comida) =>
+                comida.tipo.includes(boton.value)
+                );
+                divComida.innerHTML = "";
+                comidaFiltrados.forEach((comida) => {
+                    const divComidaTarjeta = document.createElement("div");
+                    divComidaTarjeta.classList.add("card");
+                    divComidaTarjeta.style.width = "18rem";
+
+                    let {
+                        id,
+                        nombre,
+                        tipo,
+                        precio,
+                        descripcion
+                    } = comida
+
+                    const divComidaContent = `
+            <div class="card-body">
+            <h5 class="card-title">${nombre}</h5>
+            <p class="card-text">${tipo}</p>
+            <p class="card-text">${descripcion}</p>
+            <p class="card-text">${precio}</p>
+            <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+            </div>
+            `;
+
+                    divComidaTarjeta.innerHTML = divComidaContent;
+                    divComidaTarjeta
+                        .querySelector(".agregar-carrito")
+                        .addEventListener("click", () => agregarCarrito(comida));
+                    divComida.append(divComidaTarjeta);
+                });
+            })
+    })
+}
+//FUNCION PARA MOSTAR CON LOS BOTONES
+const mostrarConBoton = () => {
+    pintarConBoton(botonSimple)
+    pintarConBoton(botonDoble)
+    pintarConBoton(botonOtras)
 }
 
-function cambiarTema() {
-    document.body.classList.toggle("darkMode");
+//FUNCION AGREGAR AL CARRITO
+const agregarCarrito = (comida) => {
+    const divComidaTarjeta = document.createElement("div");
+    if (carrito.includes(comida)) {
+        Swal.fire({
+            title: 'Ya esta en tu carrito!',
+            text: 'Continuar con tu compra',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        })
+    } else {
+        Toastify({
+            text: "Agregado correctamente",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            className: "added",
+            style: {
+                background: "linear-gradient(to right, #dcff03, #ede700, #f8ce00, #feb500, #ff9d0a)",
+            },
+            onClick: function () {}
+        }).showToast();
+
+        divComidaTarjeta.setAttribute("id", "comida-card");
+        divComidaTarjeta.classList.add("card");
+        divComidaTarjeta.style.width = "18rem";
+
+        let {
+            id,
+            nombre,
+            precio,
+        } = comida
+
+        const divComidaTarjetaContent = `
+            <div class="card-body">
+                <h5 class="card-title">${nombre}</h5>
+                <p class="card-text"><i class="fa-brands fa-ethereum"></i>$ ${precio}</p>
+                <a id="eliminar-${id}" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a>
+            </div>`;
+
+        divComidaTarjeta.innerHTML = divComidaTarjetaContent;
+        divComidaTarjeta
+            .querySelector(".btn-eliminar")
+            .addEventListener("click", (e) => eliminarComidaDelCarrito(comida, e));
+        carro.append(divComidaTarjeta);
+        carrito = [...carrito, comida]
+    }
+
+    //TOTAL CARRITO
+    if (carrito.length > 0) {
+        let totalCarrito = carrito.reduce(
+            (acc, ite) => acc + ite.precio,
+            0
+        );
+        divTotal.textContent = `Total: ${totalCarrito}`;
+    }
+
+    localStorage.setItem("ComidasAgregadas", JSON.stringify(carrito));
+
 }
 
-function mostrarFormulario() {
-    let menuOculto = document.getElementById("agregarProductos");
-    menuOculto.classList.toggle("oculto");
+//FUNCION ELIMINAR DEL CARRITO
+const eliminarComidaDelCarrito = (comida, e) => {
+    let comidaTarjeta = e.target.closest("#comida-tarjeta");
+    for (let c = 0; c < carrito.length; c++) {
+        (carrito[c] === comida) &&
+        carrito.splice(c, 1);
+        localStorage.setItem("ComidasAgregadas", JSON.stringify(carrito))
+        comidaTarjeta.remove();
+        let totalCarrito = carrito.reduce(
+            (acc, ite) => acc + ite.precio,
+            0
+        );
+
+        divTotal.textContent = `Total: ${totalCarrito}`;
+
+    }
+    console.log(carrito);
+    console.log(carrito.length);
+};
+
+//FUNCION VACIAR CARRITO
+const vaciarCarrito = () => {
+    botonVaciar.addEventListener('click', () => {
+        carro.innerHTML = ""
+        carrito.splice(0, carrito.length);
+        divTotal.textContent = `Total: 0`;
+        localStorage.setItem("ComidasAgregadas", "")
+        console.log(carrito.length)
+    })
 }
 
-let botonDarkMode = document.getElementById("darkMode");
-botonDarkMode.addEventListener("click", cambiarTema);
+//FUNCION CONFIRMAR COMPRA
+const confirmarCompra = () => {
+    let botonComprar = document.getElementById('confirmar-compra')
+    botonComprar.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (carrito.length == 0) {
+            Swal.fire({
+                title: 'No hay nada que comprar!',
+                text: 'Vuelve a buscar',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            })
+        } else {
+            setTimeout(() => location.href = "../compra.html", 1000);
+        }
+    })
+}
 
-let mostrarMenu = document.getElementById("mostrarMenu");
-mostrarMenu.addEventListener("click", mostrarFormulario);
 
-let formulario = document.getElementById("formularioComida");
-formulario.addEventListener("submit", guardarPedido);
+buscador();
+mostrarConBoton();
+vaciarCarrito();
+confirmarCompra();
