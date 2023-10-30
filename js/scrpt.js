@@ -1,6 +1,6 @@
 let carrito = [];
 let carro = document.getElementById("carrito");
-let divComida = document.getElementById("divComida");
+let divComida = document.getElementById("divComidas");
 let inputBuscador = inputTexto.value;
 let selectComida = document.getElementById('select-comida')
 let botonSimple = document.getElementById('hamburguesa-simple')
@@ -32,8 +32,8 @@ const buscador = () => {
                     let {
                         id,
                         nombre,
-                        precio,
                         tipo,
+                        precio,
                         descripcion
                     } = comida
 
@@ -84,7 +84,7 @@ const pintarConBoton = (boton) => {
             <h5 class="card-title">${nombre}</h5>
             <p class="card-text">${tipo}</p>
             <p class="card-text">${descripcion}</p>
-            <p class="card-text">${precio}</p>
+            <p class="card-text">$ ${precio}</p>
             <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
             </div>
             `;
@@ -171,7 +171,7 @@ const agregarCarrito = (comida) => {
 
 //FUNCION ELIMINAR DEL CARRITO
 const eliminarComidaDelCarrito = (comida, e) => {
-    let comidaTarjeta = e.target.closest("#comida-tarjeta");
+    let comidaTarjeta = e.target.closest("#comida-card");
     for (let c = 0; c < carrito.length; c++) {
         (carrito[c] === comida) &&
         carrito.splice(c, 1);
