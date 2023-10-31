@@ -1,41 +1,144 @@
-.oculto{
-    display: none;
+@import url("https://fonts.google.com/specimen/Bree+Serif?stroke=Serif");
+header {
+    background-color: #d5b895; ;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .nombre { 
+    display: flex;
+    justify-content: flex-start;
+    left: 5rem;
+    top: 10;
+}
+header .logo {
+    width: 80px;
 }
 
 
-.darkMode {
-    background-color: lightslategray;
-    h2{
-        color: white;
+
+header .navbar {
+  display: flex;
+  justify-content: end;
+  padding-right: 3rem;
+  padding-top: 10;
+  gap: 3rem; }
+  header .navbar .login {
+    margin-bottom: 0;
+    font-size: 1.5em; }
+
+
+.row {
+  justify-content: space-around; }
+
+.card-body {
+  display: flex;
+  flex: initial;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem; }
+  .card-body .agregar-carrito {
+    background-color: #d5b895;
+    color: black;
+  }
+  .card-body .agregar-carrito:hover {
+    color: #d5b895;
+    background-color: black; }
+  
+
+.navbar .buscador .input-buscador {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: .4em;
+  padding: .5em; }
+
+
+.added {
+  border-radius: 10px; }
+
+.fa-cart-shopping {
+  color: black; }
+
+
+
+.show {
+  pointer-events: auto;
+  opacity: 1; }
+
+.offcanvas .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; }
+  .offcanvas .offcanvas-body .card {
+    border: 1px solid #d5b895;;
+    border-radius: 25px;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.5s ease; }
+  .offcanvas .offcanvas-body .card-body .btn-eliminar .fa-trash-can {
+    color: #faf0dc;
+    cursor: pointer; }
+
+.offcanvas .total-carrito {
+  height: 80px;
+  text-align: center;
+  padding-top: 2rem; }
+
+.offcanvas .botones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; }
+  .offcanvas .botones .vaciar-carrito {
+    background-color: #d5b895;
+    color: black;
+    margin-bottom: 1rem;
+    border: transparent;
+    border-radius: 10px;
+    width: 40%;
+    align-self: center; }
+    .offcanvas .botones .vaciar-carrito:hover {
+      color: #d5b895;
+      background-color: black; }
+  .offcanvas .botones .confirmar-compra {
+    background-color: #d5b895;
+    color: black;
+    margin-bottom: 1rem;
+    border: transparent;
+    border-radius: 10px;
+    width: 40%;
+    align-self: center; }
+    .offcanvas .botones .confirmar-compra:hover {
+      color: #d5b895;
+      background-color: black; }
+
+.collection-title {
+  text-align: center;
+  margin-bottom: 2rem; }
+
+.buttons-select {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem; }
+  .buttons-select .button-select {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.8em 1.3em 0.8em 0.9em;
+    color: black;
+    background: #d5b895;
+    border: none;
+    letter-spacing: 0.05em;
+    border-radius: 5px; 
     }
-}
+    .buttons-select .button-select:hover {
+        color: #d5b895;
+        background-color: black; 
+    }
 
+* {
+  font-family: 'Bree', serif; }
 
-.button-select {
-    background-color: #c2fbd7;
-    border-radius: 100px;
-    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-    color: green;
-    cursor: pointer;
-    display: inline-block;
-    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-    padding: 7px 20px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 250ms;
-    border: 0;
-    font-size: 16px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
-
-.button:hover {
-    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
-    transform: scale(1.05) rotate(-1deg);
-}
-
-.tarjeta {
-    padding: 10px, 0px;
-    background-color: #c2fbd7;
-}
+a {
+  text-decoration: none;
+  color: black; }
